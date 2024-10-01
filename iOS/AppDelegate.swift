@@ -19,12 +19,16 @@ final class AppDelegate: NSObject, UIApplicationDelegate {
 
         Messaging.messaging().delegate = self
         notificationCenter.delegate = self
+        notificationCenter.requestAuthorization(
+            options: [.alert, .badge, .sound]
+        ) { granted, error in
+            DispatchQueue.main.async {
+                application.registerForRemoteNotifications()
+            }
+        }
 
         Task { @MainActor in
             do {
-                try await notificationCenter.requestAuthorization(options: [])
-                application.registerForRemoteNotifications()
-
                 try await authorizationService.requestAuthorization(for: .individual)
             } catch {
                 print("Failed to get authorization: \(error)")
