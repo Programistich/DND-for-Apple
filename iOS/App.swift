@@ -13,6 +13,9 @@ struct DNDiOSApp: App {
     @AppStorage(UserDefaults.isAllowLocalNotificationKey)
     private var isAllowLocalNotification: Bool = true
 
+    @AppStorage(UserDefaults.isIgnoreIDKey)
+    private var isIgnoreID: Bool = false
+
     var body: some Scene {
         WindowGroup {
             VStack(spacing: 18) {
@@ -36,6 +39,11 @@ struct DNDiOSApp: App {
 
                 Toggle(isOn: $isAllowLocalNotification) {
                     Text("Allow Local Notification")
+                }
+                .padding(.horizontal, 60)
+
+                Toggle(isOn: $isIgnoreID) {
+                    Text("Ignore ID")
                 }
                 .padding(.horizontal, 60)
 

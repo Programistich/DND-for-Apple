@@ -11,6 +11,9 @@ struct DNDMacOSApp: App {
     @AppStorage(UserDefaults.isAllowLocalNotificationKey)
     private var isAllowLocalNotification: Bool = true
 
+    @AppStorage(UserDefaults.isIgnoreIDKey)
+    private var isIgnoreID: Bool = false
+
     var body: some Scene {
         MenuBarExtra {
             Button("Start Focus") {
@@ -27,6 +30,10 @@ struct DNDMacOSApp: App {
 
             Toggle(isOn: $isAllowLocalNotification) {
                 Text("Allow Local")
+            }
+
+            Toggle(isOn: $isIgnoreID) {
+                Text("Ignore ID")
             }
 
             Divider()

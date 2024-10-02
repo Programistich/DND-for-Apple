@@ -10,6 +10,11 @@ final class DNDService: ObservableObject {
     private init() {}
 
     func onChange(mode: FocusMode, by id: String) {
+        if UserDefaults.standard.isIgnoreID {
+            onChange(mode: mode)
+            return
+        }
+
         if cache.contains(id) {
             print("ID already uses")
             return

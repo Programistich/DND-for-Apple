@@ -10,6 +10,7 @@ final class DNDServer {
 
     func start() {
         app.http.server.configuration.port = 8088
+        app.http.server.configuration.hostname = "0.0.0.0"
 
         app.get("dnd") { req async -> Response in
             guard let statusRaw = req.query[String.self, at: "status"] else {
